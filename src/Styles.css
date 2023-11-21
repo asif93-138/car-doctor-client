@@ -1,0 +1,81 @@
+.slider {
+    height: 550px;
+    width: auto;
+}
+
+.position-parent {
+    background-image: linear-gradient(to right, rgba(0,0,0,0.7), rgba(255,255,255,0.1)), url(../public/assets/images/banner/5.jpg);
+    background-size: 100% 100%;
+}
+.position-parent-1 {
+    background-image: linear-gradient(to right, rgba(0,0,0,0.7), rgba(255,255,255,0.1)), url(../public/assets/images/banner/1.jpg);
+    background-size: 100% 100%;
+}
+.position-parent-2 {
+    background-image: linear-gradient(to right, rgba(0,0,0,0.7), rgba(255,255,255,0.1)), url(../public/assets/images/banner/2.jpg);
+    background-size: 100% 100%;
+}
+.position-parent-3 {
+    background-image: linear-gradient(to right, rgba(0,0,0,0.7), rgba(255,255,255,0.1)), url(../public/assets/images/banner/3.jpg);
+    background-size: 100% 100%;
+}
+.position-parent-4 {
+    background-image: linear-gradient(to right, rgba(0,0,0,0.7), rgba(255,255,255,0.1)), url(../public/assets/images/banner/4.jpg);
+    background-size: 100% 100%;
+}
+.position-parent-6 {
+    background-image: linear-gradient(to right, rgba(0,0,0,0.7), rgba(255,255,255,0.1)), url(../public/assets/images/banner/6.jpg);
+    background-size: 100% 100%;
+}
+
+.positioning {
+    padding-left: 120px;
+    padding-top: 100px;
+}
+
+.text-heavy {
+    font-weight: 700;
+    font-size: 45px;
+}
+
+.btn-custom {
+    border-color: white;
+    color: white;
+    background-color: transparent;
+}
+
+.btn-custom:hover {
+    border-color: black;
+    color: black;
+    background-color: white;
+}
+
+.ab-pos {
+    position: relative;
+}
+
+.ab-ph {
+    width: 455px;
+    height: 450px;
+    object-fit: cover;
+    object-position: 20% 0%;
+}
+
+.ab-sub-ph {
+    width: 250px;
+    height: 250px;
+    position: absolute;
+    top: 240px;
+    left: 240px;
+    z-index: 1;
+    border: 10px solid white;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: auto auto auto;
+}
+
+.g-col-4 img {
+    height: 220px;
+}
