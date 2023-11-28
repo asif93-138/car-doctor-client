@@ -79,3 +79,30 @@
 .g-col-4 img {
     height: 220px;
 }
+
+.img-checkout {
+    background: linear-gradient(to right, rgba(0,0,0,0.7), rgba(255,255,255,0.1)), url(../public/assets/images/checkout/checkout.png);
+    height: 264px;
+    width: 90%;
+}
+
+.img-checkout h1 {
+    font-size: 45px;
+    margin: 100px;
+}
+
+.cs-input {
+    width: 49%;
+}
+
+.img-managing {
+    background: linear-gradient(to right, rgba(0,0,0,0.7), rgba(255,255,255,0.1)), url(../public/assets/images/checkout/checkout.png);
+    height: 264px;
+    width: 90%;
+}
+.img-managing h1 {
+    margin: 100px;
+}
+.img-d-user {
+    width: 18%;
+}

@@ -1,15 +1,17 @@
 import photo from '../public/assets/images/about_us/person.jpg';
 import subPhoto from '../public/assets/images/about_us/parts.jpg';
-import img1 from '../public/assets/images/services/2.jpg';
-import img2 from '../public/assets/images/services/4.jpg';
-import img3 from '../public/assets/images/services/6.jpg';
-import img4 from '../public/assets/images/services/3.jpg';
-import img5 from '../public/assets/images/services/1.jpg';
-import img6 from '../public/assets/images/services/5.jpg';
 import './Styles.css';
+import { useState } from 'react';
+import { useEffect } from 'react';
+import { Link } from "react-router-dom";
 
 function App() {
-
+  const [servicesArr, setServicesArr] = useState([]);
+  useEffect(() => {
+    fetch('http://localhost:3000/services')
+    .then(res => res.json())
+    .then(data => setServicesArr(data))
+  }, [])
 
   return (
     <>
@@ -106,54 +108,17 @@ function App() {
       <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration <br />in some form, by injected humour, or randomised words</p>
       </article>
       <section className='grid'>
-        <div className='border  dorder-dark p-3 m-3 g-col-4'>
-          <img src={img1} className='img-fluid' />
-          <h5 className='my-3'>Electrical System</h5>
-          <div className='d-flex justify-content-between align-items-center'>
-          <h6 className='text-danger'>Price : $20</h6>
-          <button type='' className='btn border border-0 p-0 text-danger'><i className="bi bi-arrow-right-circle fs-2"></i></button>
-          </div>
-        </div>
-        <div className='border  dorder-dark p-3 m-3 g-col-4'>
-          <img src={img2} className='img-fluid' />
-          <h5 className='my-3'>Engine Diagnostics</h5>
-          <div className='d-flex justify-content-between align-items-center'>
-          <h6 className='text-danger'>Price : $20</h6>
-          <button type='' className='btn border border-0 p-0 text-danger'><i className="bi bi-arrow-right-circle fs-2"></i></button>
-          </div>
-        </div>
-        <div className='border  dorder-dark p-3 m-3 g-col-4'>
-          <img src={img3} className='img-fluid' />
-          <h5 className='my-3'>Auto car Repair</h5>
-          <div className='d-flex justify-content-between align-items-center'>
-          <h6 className='text-danger'>Price : $20</h6>
-          <button type='' className='btn border border-0 p-0 text-danger'><i className="bi bi-arrow-right-circle fs-2"></i></button>
-          </div>
-        </div>
-        <div className='border  dorder-dark p-3 m-3 g-col-4'>
-          <img src={img4} className='img-fluid' />
-          <h5 className='my-3'>Electrical System</h5>
-          <div className='d-flex justify-content-between align-items-center'>
-          <h6 className='text-danger'>Price : $20</h6>
-          <button type='' className='btn border border-0 p-0 text-danger'><i className="bi bi-arrow-right-circle fs-2"></i></button>
-          </div>
-        </div>
-        <div className='border  dorder-dark p-3 m-3 g-col-4'>
-          <img src={img5} className='img-fluid' />
-          <h5 className='my-3'>Engine Diagnostics</h5>
-          <div className='d-flex justify-content-between align-items-center'>
-          <h6 className='text-danger'>Price : $20</h6>
-          <button type='' className='btn border border-0 p-0 text-danger'><i className="bi bi-arrow-right-circle fs-2"></i></button>
-          </div>
-        </div>
-        <div className='border  dorder-dark p-3 m-3 g-col-4'>
-          <img src={img6} className='img-fluid' />
-          <h5 className='my-3'>Auto car Repair</h5>
-          <div className='d-flex justify-content-between align-items-center'>
-          <h6 className='text-danger'>Price : $20</h6>
-          <button type='' className='btn border border-0 p-0 text-danger'><i className="bi bi-arrow-right-circle fs-2"></i></button>
-          </div>
-        </div>
+        {servicesArr.map(x => {return (
+                    <div key={x._id} className='border p-3 m-3 g-col-4'>
+                    <img src={x.img} className='img-fluid' />
+                    <h5 className='my-3'>{x.title}</h5>
+                    <div className='d-flex justify-content-between align-items-center'>
+                    <h6 className='text-danger'>Price : ${x.price}</h6>
+                    <Link to={`/checkout/${x._id}`}><button type='button' className='btn border border-0 p-0 text-danger'><i className="bi bi-arrow-right-circle fs-2"></i></button></Link>
+                    </div>
+                  </div>
+        )})}
+
       </section>
       <div className='d-flex justify-content-center'><button type='button' className='btn btn-outline-danger'>More Services</button></div>
       </div>

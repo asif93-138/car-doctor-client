@@ -1,13 +1,13 @@
 import React, { createContext, useEffect, useState } from 'react';
-import {createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signOut} from 'firebase/auth';
+import { GoogleAuthProvider, createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut } from 'firebase/auth';
 import app from './firebase.config';
 
 export const AuthContext = createContext();
 const auth = getAuth(app);
+const provider = new GoogleAuthProvider();
 
 
-
-const AuthProvider = ({children}) => {
+const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
     const createUser = (email, password) => {
@@ -23,6 +23,21 @@ const AuthProvider = ({children}) => {
             setUser(currentUser);
             console.log('current user', currentUser);
             setLoading(false);
+            if (currentUser) {
+                fetch('http://localhost:3000/jwt', {
+                    method: 'POST',
+                    headers: {
+                        'content-type': 'application/json'
+                    },
+                    body: JSON.stringify({ email: currentUser.email })
+                })
+                    .then(res => res.json())
+                    .then(res => {
+                        console.log(res);
+                        localStorage.setItem('car-doctor-AC', res.token);
+                    })
+            }
+            else { localStorage.removeItem('car-doctor-AC'); }
         });
         return () => {
             return unsubscribe();
@@ -31,11 +46,17 @@ const AuthProvider = ({children}) => {
     function loggingOut() {
         signOut(auth).then(() => {
             // Sign-out successful.
-          }).catch((error) => {
+
+        }).catch((error) => {
             // An error happened.
-          });
+        });
         console.log('logged out!');
-    }    
+    }
+
+    function siwG() {
+        setLoading(true);
+        return signInWithPopup(auth, provider);
+    }
 
     const authInfo = {
         user,
@@ -44,9 +65,10 @@ const AuthProvider = ({children}) => {
         setLoading,
         createUser,
         signIn,
-        loggingOut
+        loggingOut,
+        siwG
     }
-    
+
     return (
         <AuthContext.Provider value={authInfo}>
             {children}
