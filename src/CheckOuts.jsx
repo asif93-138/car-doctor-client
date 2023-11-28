@@ -7,7 +7,7 @@ const CheckOuts = () => {
     const [infos, setInfos] = useState([]);
     const navigate = useNavigate();
     useEffect(() => {
-        fetch(`http://localhost:3000/checkouts?email=${user.email}`, {
+        fetch(`https://car-doctor-server-blush-seven.vercel.app/checkouts?email=${user.email}`, {
             method: 'GET',
             headers: {
                 authorization: `Bearer ${localStorage.getItem('car-doctor-AC')}`
@@ -24,7 +24,7 @@ const CheckOuts = () => {
         if (confirm('wanna delete?')) {
             console.log(id, 'deleted!');
 
-            fetch(`http://localhost:3000/checkouts/${id}`, {
+            fetch(`https://car-doctor-server-blush-seven.vercel.app/checkouts/${id}`, {
                 method: 'DELETE'
             })
             .then(res => res.json())
@@ -40,7 +40,7 @@ const CheckOuts = () => {
     function updating(id) {
         console.log(id);
 
-        fetch(`http://localhost:3000/checkouts/${id}`, {
+        fetch(`https://car-doctor-server-blush-seven.vercel.app/checkouts/${id}`, {
             method: 'PATCH',
             headers: {
                 'content-type': 'application/json'

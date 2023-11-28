@@ -16,7 +16,7 @@ const CheckOut = () => {
         const message = collections.massage.value;
         const order = { name, email, phone, message, service };
         
-        fetch('http://localhost:3000/checkouts', {
+        fetch('https://car-doctor-server-blush-seven.vercel.app/checkouts', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

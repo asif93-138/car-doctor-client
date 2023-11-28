@@ -8,7 +8,7 @@ import { Link } from "react-router-dom";
 function App() {
   const [servicesArr, setServicesArr] = useState([]);
   useEffect(() => {
-    fetch('http://localhost:3000/services')
+    fetch('https://car-doctor-server-blush-seven.vercel.app/services')
     .then(res => res.json())
     .then(data => setServicesArr(data))
   }, [])
